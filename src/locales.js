@@ -45,32 +45,32 @@ export const locales = {
         {
           id: 'plaga',
           name: "La Plaga Coffee",
-          image: "/product-plaga.jpg",
+          image250: "/product_new/plaga-250ml.jpg",
+          image500: "/product_new/plaga-500ml.jpg",
           roast: "Medium Dark",
           origin: "Plaga Highlands",
           notes: "Dark Cherry, Oak, Subtle Wine, Mild Spice",
-          desc: "A perfectly balanced symphony. The medium indicator level provides a rich Arabica and Robusta base, beautifully elevated by the wine-like nuances distinctly gifted by the Liberica beans.",
-          price: "Rp 65.000 / 250ml"
+          desc: "A perfectly balanced symphony. The medium indicator level provides a rich Arabica and Robusta base, beautifully elevated by the wine-like nuances distinctly gifted by the Liberica beans."
         },
         {
           id: 'kintamani',
           name: "La Kintamani Coffee",
-          image: "/product-kintamani.jpg",
+          image250: "/product_new/kintamani-250ml.jpg",
+          image500: "/product_new/kintamani-500ml.jpg",
           roast: "Dark",
           origin: "Kintamani",
           notes: "Intense Woody, Roasted Nuts, Bold & Heavy",
-          desc: "Bold and unapologetic. With the highest indicator level, this blend pushes the limits of intensity and deep bitterness, heavily spotlighting the robust core base over the subtle Liberica hints.",
-          price: "Rp 75.000 / 250ml"
+          desc: "Bold and unapologetic. With the highest indicator level, this blend pushes the limits of intensity and deep bitterness, heavily spotlighting the robust core base over the subtle Liberica hints."
         },
         {
           id: 'pupuan',
           name: "La Pupuan Coffee",
-          image: "/product-pupuan.jpg",
+          image250: "/product_new/pupuan-250ml.jpg",
+          image500: "/product_new/pupuan-500ml.jpg",
           roast: "Medium",
           origin: "Pupuan",
           notes: "Fermented Wine, Jackfruit, Wild Berries",
-          desc: "Our most vibrant blend featuring our strongest Liberica presence. The lowest indicator level translates to an exceptionally complex, wine-like fruitiness with a smooth, bright finish.",
-          price: "Rp 65.000 / 250ml"
+          desc: "Our most vibrant blend featuring our strongest Liberica presence. The lowest indicator level translates to an exceptionally complex, wine-like fruitiness with a smooth, bright finish."
         }
       ],
       labels: {
@@ -128,32 +128,32 @@ export const locales = {
         {
           id: 'plaga',
           name: "La Plaga Coffee",
-          image: "/product-plaga.jpg",
+          image250: "/product_new/plaga-250ml.jpg",
+          image500: "/product_new/plaga-500ml.jpg",
           roast: "Medium Dark",
           origin: "Dataran Tinggi Plaga",
           notes: "Ceri Hitam, Kayu Oak, Hint Anggur (Wine), Rempah Ringan",
-          desc: "Sebuah harmoni yang sangat seimbang. Tingkat indikator menengah memberikan dasar Arabika dan Robusta yang kaya, terangkat sempurna oleh nuansa anggur (wine) eksotis dari biji Liberika.",
-          price: "Rp 65.000 / 250ml"
+          desc: "Sebuah harmoni yang sangat seimbang. Tingkat indikator menengah memberikan dasar Arabika dan Robusta yang kaya, terangkat sempurna oleh nuansa anggur (wine) eksotis dari biji Liberika."
         },
         {
           id: 'kintamani',
           name: "La Kintamani Coffee",
-          image: "/product-kintamani.jpg",
+          image250: "/product_new/kintamani-250ml.jpg",
+          image500: "/product_new/kintamani-500ml.jpg",
           roast: "Dark",
           origin: "Kintamani",
           notes: "Aroma Kayu Kuat, Kacang Panggang, Sangat Pahit",
-          desc: "Sangat berani dan intens. Dengan tingkat indikator kepahitan tertinggi, kopi ini menembus batas intensitas, menonjolkan kekokohan dasar paduan Arabika dan Robusta ketimbang kehalusan Liberika.",
-          price: "Rp 75.000 / 250ml"
+          desc: "Sangat berani dan intens. Dengan tingkat indikator kepahitan tertinggi, kopi ini menembus batas intensitas, menonjolkan kekokohan dasar paduan Arabika dan Robusta ketimbang kehalusan Liberika."
         },
         {
           id: 'pupuan',
           name: "La Pupuan Coffee",
-          image: "/product-pupuan.jpg",
+          image250: "/product_new/pupuan-250ml.jpg",
+          image500: "/product_new/pupuan-500ml.jpg",
           roast: "Medium",
           origin: "Pupuan",
           notes: "Anggur Fermentasi (Wine), Nangka, Buah Liar",
-          desc: "Paduan paling eksotis dengan karakter wine dari Liberika yang amat seksi. Tingkat indikator minimal menghasilkan profil rasa buah fermentasi yang sangat kompleks dan mendalam.",
-          price: "Rp 65.000 / 250ml"
+          desc: "Paduan paling eksotis dengan karakter wine dari Liberika yang amat seksi. Tingkat indikator minimal menghasilkan profil rasa buah fermentasi yang sangat kompleks dan mendalam."
         }
       ],
       labels: {

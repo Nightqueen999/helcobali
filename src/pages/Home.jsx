@@ -9,7 +9,7 @@ export default function Home({ t, lang }) {
     {
       id: 1,
       name: "Bintang Supermarket",
-      location: "Seminyak & Ubud, Bali",
+      location: "Seminyak & UNew_Query_1776084390888bud, Bali",
       image: "https://images.unsplash.com/photo-1601599561096-f87c95fff1e9?auto=format&fit=crop&w=800&q=80",
       desc: "Temukan koleksi lengkap Cold Brew kami di lorong minuman premium Bintang Supermarket.",
       branches: [

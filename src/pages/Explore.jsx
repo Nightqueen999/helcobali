@@ -1,13 +1,22 @@
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, Coffee, Droplets, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';   // ← tambahan import
+import SEO from '../components/SEO';
 
-export default function Explore({ t, lang }) {   // ← tambahkan prop `lang`
+export default function Explore({ t, lang }) {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // Track selected size per product
+  const [selectedSizes, setSelectedSizes] = useState({});
+
+  const getSize = (productId) => selectedSizes[productId] || '250';
+
+  const setSize = (productId, size) => {
+    setSelectedSizes(prev => ({ ...prev, [productId]: size }));
+  };
 
   const fadeUp = {
     hidden: { opacity: 0, y: 50 },
@@ -24,12 +33,12 @@ export default function Explore({ t, lang }) {   // ← tambahkan prop `lang`
     id: {
       title: "Koleksi Cold Brew – La Plaga, La Kintamani, La Pupuan | Helco Bali",
       description:
-        "Jelajahi 3 varian cold brew eksklusif Helco Bali: La Plaga (Arabika+Robusta+Liberika), La Kintamani (Dark & Bold), dan La Pupuan (Liberika fruity). Diseduh 18 jam. Mulai Rp 65.000.",
+        "Jelajahi 3 varian cold brew eksklusif Helco Bali: La Plaga (Arabika+Robusta+Liberika), La Kintamani (Dark & Bold), dan La Pupuan (Liberika fruity). Diseduh 18 jam.",
     },
     en: {
       title: "Cold Brew Collection – La Plaga, La Kintamani, La Pupuan | Helco Bali",
       description:
-        "Explore Helco Bali's 3 exclusive cold brews: La Plaga (Arabica+Robusta+Liberica blend), La Kintamani (Dark & Bold), and La Pupuan (fruity Liberica-forward). 18-hour steep. From Rp 65,000.",
+        "Explore Helco Bali's 3 exclusive cold brews: La Plaga (Arabica+Robusta+Liberica blend), La Kintamani (Dark & Bold), and La Pupuan (fruity Liberica-forward). 18-hour steep.",
     },
   };
 
@@ -56,64 +65,99 @@ export default function Explore({ t, lang }) {   // ← tambahkan prop `lang`
       </motion.div>
 
       <div className="space-y-32">
-        {t.explore.products.map((product, idx) => (
-          <motion.div
-            key={product.id}
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1 }}
-            className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
-          >
-            <div className="w-full lg:w-1/2 relative group">
-              <div className="aspect-[4/5] bg-white overflow-hidden relative flex items-center justify-center p-8 lg:p-12 shadow-2xl">
-                <img
-                  src={product.image}
-                  alt={`${product.name} – Helco Bali Cold Brew`}
-                  className="relative z-10 w-full h-full object-contain filter contrast-[1.05] group-hover:scale-105 transition-transform duration-[2s]"
-                />
-              </div>
-              <div className="absolute -bottom-6 -right-6 lg:right-auto lg:-left-6 bg-amber-500 text-black px-6 py-4 font-semibold text-sm uppercase tracking-widest shadow-xl z-20">
-                {product.price}
-              </div>
-            </div>
+        {t.explore.products.map((product, idx) => {
+          const currentSize = getSize(product.id);
+          const currentImage = currentSize === '500' ? product.image500 : product.image250;
 
-            <div className="w-full lg:w-1/2 text-left">
-              <span className="text-amber-500 text-xs tracking-[0.2em] uppercase font-bold">{product.roast}</span>
-              <h2 className="text-4xl md:text-5xl font-serif text-white mt-4 mb-8">{product.name}</h2>
-
-              <p className="text-stone-400 text-lg leading-relaxed font-light mb-10 pb-10 border-b border-white/10">
-                {product.desc}
-              </p>
-
-              <div className="grid grid-cols-2 gap-8 mb-12">
-                <div>
-                  <h4 className="text-stone-500 text-xs uppercase tracking-widest mb-2 font-semibold flex items-center gap-2">
-                    <MapPin size={14} /> {t.explore.labels.origin}
-                  </h4>
-                  <p className="text-stone-200 font-medium">{product.origin}</p>
+          return (
+            <motion.div
+              key={product.id}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 1 }}
+              className={`flex flex-col lg:flex-row gap-12 lg:gap-20 items-center ${idx % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+            >
+              {/* ── PRODUCT IMAGE (original style with size toggle) ── */}
+              <div className="w-full lg:w-1/2 relative group">
+                <div className="aspect-[4/5] bg-white overflow-hidden relative flex items-center justify-center p-8 lg:p-12 shadow-2xl">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={`${product.id}-${currentSize}`}
+                      src={currentImage}
+                      alt={`${product.name} – ${currentSize}ml – Helco Bali Cold Brew`}
+                      className="relative z-10 w-full h-full object-contain filter contrast-[1.05]"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 1.02 }}
+                      transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+                    />
+                  </AnimatePresence>
                 </div>
-                <div>
-                  <h4 className="text-stone-500 text-xs uppercase tracking-widest mb-2 font-semibold flex items-center gap-2">
-                    <Coffee size={14} /> {t.explore.labels.notes}
-                  </h4>
-                  <p className="text-stone-200 font-medium">{product.notes}</p>
+
+                {/* Size Toggle (replaces the old price badge) */}
+                <div className={`absolute -bottom-6 ${idx % 2 !== 0 ? '-left-4 lg:-left-6' : '-right-4 lg:-right-6'} z-20 flex shadow-xl`}>
+                  <button
+                    onClick={() => setSize(product.id, '250')}
+                    className={`px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer border ${
+                      currentSize === '250'
+                        ? 'bg-amber-500 text-black border-amber-500'
+                        : 'bg-[#0a0a0a] text-stone-400 border-white/10 hover:text-amber-500 hover:border-amber-500/40'
+                    }`}
+                  >
+                    250ml
+                  </button>
+                  <button
+                    onClick={() => setSize(product.id, '500')}
+                    className={`px-5 py-3.5 text-[11px] font-bold uppercase tracking-[0.15em] transition-all duration-300 cursor-pointer border border-l-0 ${
+                      currentSize === '500'
+                        ? 'bg-amber-500 text-black border-amber-500'
+                        : 'bg-[#0a0a0a] text-stone-400 border-white/10 hover:text-amber-500 hover:border-amber-500/40'
+                    }`}
+                  >
+                    500ml
+                  </button>
                 </div>
               </div>
 
-              <a href="/#outlets" className="inline-block mt-4">
-                <motion.div
-                  whileHover={{ scale: 1.05, backgroundColor: "#d4af37", color: "#000" }}
-                  whileTap={{ scale: 0.95 }}
-                  className="inline-flex items-center gap-2 border border-amber-500/50 text-amber-500 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] transition-colors cursor-pointer"
-                >
-                  <MapPin size={14} />
-                  <span>{t.explore.labels.orderBtn}</span>
-                </motion.div>
-              </a>
-            </div>
-          </motion.div>
-        ))}
+              {/* ── PRODUCT INFO (same as original, without price) ── */}
+              <div className="w-full lg:w-1/2 text-left">
+                <span className="text-amber-500 text-xs tracking-[0.2em] uppercase font-bold">{product.roast}</span>
+                <h2 className="text-4xl md:text-5xl font-serif text-white mt-4 mb-8">{product.name}</h2>
+
+                <p className="text-stone-400 text-lg leading-relaxed font-light mb-10 pb-10 border-b border-white/10">
+                  {product.desc}
+                </p>
+
+                <div className="grid grid-cols-2 gap-8 mb-12">
+                  <div>
+                    <h4 className="text-stone-500 text-xs uppercase tracking-widest mb-2 font-semibold flex items-center gap-2">
+                      <MapPin size={14} /> {t.explore.labels.origin}
+                    </h4>
+                    <p className="text-stone-200 font-medium">{product.origin}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-stone-500 text-xs uppercase tracking-widest mb-2 font-semibold flex items-center gap-2">
+                      <Coffee size={14} /> {t.explore.labels.notes}
+                    </h4>
+                    <p className="text-stone-200 font-medium">{product.notes}</p>
+                  </div>
+                </div>
+
+                <a href="/#outlets" className="inline-block mt-4">
+                  <motion.div
+                    whileHover={{ scale: 1.05, backgroundColor: "#d4af37", color: "#000" }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center gap-2 border border-amber-500/50 text-amber-500 px-8 py-4 text-xs font-bold uppercase tracking-[0.2em] transition-colors cursor-pointer"
+                  >
+                    <MapPin size={14} />
+                    <span>{t.explore.labels.orderBtn}</span>
+                  </motion.div>
+                </a>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </main>
   );

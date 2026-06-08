@@ -1,8 +1,30 @@
+/**
+ * locales.js — Internationalisation (i18n) strings.
+ *
+ * Supported languages:
+ *  - `en` — English (default)
+ *  - `id` — Bahasa Indonesia
+ *
+ * Structure:
+ *  nav          → Navbar link labels
+ *  hero         → Hero section copy
+ *  story        → Brand philosophy section
+ *  outletsTitle → Retail-partner section header
+ *  outlets      → Per-outlet descriptions (keyed by outlet `id`)
+ *  contact      → B2B / corporate partnership section
+ *  explore      → Product collection page (incl. product data)
+ *  footer       → Copyright line
+ *  footerSection→ 4-column footer labels
+ *
+ * To add a new language, duplicate any top-level key (e.g. `en`)
+ * and translate every string value.
+ */
 export const locales = {
   en: {
     nav: {
       story: "Our Story",
       locations: "Locations",
+      products: "Products",
       contact: "Contact",
       langToggle: "ID"
     },
@@ -80,12 +102,20 @@ export const locales = {
         back: "Back to Home"
       }
     },
-    footer: "HelcoBali Artisan Cold Brew. Bali, Indonesia."
+    footer: "HelcoBali Artisan Cold Brew. Bali, Indonesia.",
+    footerSection: {
+      tagline: "Cold Brew Artisan · Bali",
+      desc: "Handcrafted cold brew from the highlands of Bali. Three origins. 18 hours. Exclusively distributed.",
+      navigate: "Navigate",
+      products: "Products",
+      followUs: "Follow Us"
+    }
   },
   id: {
     nav: {
       story: "Cerita Kami",
       locations: "Lokasi",
+      products: "Produk",
       contact: "Kontak",
       langToggle: "EN"
     },
@@ -163,6 +193,13 @@ export const locales = {
         back: "Kembali ke Beranda"
       }
     },
-    footer: "HelcoBali Artisan Cold Brew. Bali, Indonesia."
+    footer: "HelcoBali Artisan Cold Brew. Bali, Indonesia.",
+    footerSection: {
+      tagline: "Cold Brew Artisan · Bali",
+      desc: "Kopi cold brew buatan tangan dari dataran tinggi Bali. Tiga asal. 18 jam. Distribusi eksklusif.",
+      navigate: "Navigasi",
+      products: "Produk",
+      followUs: "Ikuti Kami"
+    }
   }
 };
